@@ -1,0 +1,1 @@
+{"E":29500.0,"ν":0.3,"t":0.102,"coordinates":{"X":[0.0,1.0,2.0,3.0,4.0],"Y":[0.0,2.0,6.0,8.0,3.0]},"centerline_radius":0.204,"loads":{"P":1.0,"Mxx":0.0,"Mzz":0.0,"M11":0.0,"M22":0.0},"load_type":"P","flat_mesh_size_goal":0.5,"corner_mesh_size_goal":0.5235987755982988,"mode_shape_element_discretization":2}
