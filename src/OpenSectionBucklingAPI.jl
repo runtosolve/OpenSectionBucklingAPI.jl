@@ -2,7 +2,7 @@ module OpenSectionBucklingAPI
 
 using JSON, StructTypes, OpenSectionBuckling, CUFSMModalGeometry, SectionProperties
 
-struct Request
+struct CalculateOpenSectionBuckling
   E::Float64
   ν::Float64
   t::Float64
@@ -15,7 +15,7 @@ struct Request
   mode_shape_element_discretization::Int
 end
 
-struct Response
+struct OpenSectionBucklingResult
   local_buckling_label::String
   distortional_buckling_label::String
   Lcrℓ::Float64
@@ -27,15 +27,15 @@ struct Response
   section_properties::Any
 end
 
-StructTypes.StructType(::Type{Request}) = StructTypes.Struct()
-StructTypes.StructType(::Type{Response}) = StructTypes.Struct()
+StructTypes.StructType(::Type{CalculateOpenSectionBuckling}) = StructTypes.Struct()
+StructTypes.StructType(::Type{OpenSectionBucklingResult}) = StructTypes.Struct()
 
 
-function parse_request(json_string::String)::Request
+function parse_request(json_string::String)::CalculateOpenSectionBuckling
   d = JSON.parse(json_string)
   coords = d["coordinates"]
   loads = d["loads"]
-  return Request(
+  return CalculateOpenSectionBuckling(
     d["E"],
     d["ν"],
     d["t"],
@@ -50,7 +50,7 @@ function parse_request(json_string::String)::Request
 end
 
 
-function calculate(request::Request)::Response
+function calculate(request::CalculateOpenSectionBuckling)::OpenSectionBucklingResult
 
   E = request.E
   ν = request.ν
@@ -118,7 +118,7 @@ function calculate(request::Request)::Response
   t_elements = model.elem[:, 4]
   local_buckling_mode_shape = CUFSMModalGeometry.get_mode_shape_coordinates(model, eig, t_elements, element_discretization, deformation_scale)
 
-  return Response(
+  return OpenSectionBucklingResult(
     all_results[2].label,
     all_results[1].label,
     all_results[2].Lcr,
@@ -132,6 +132,6 @@ function calculate(request::Request)::Response
 
 end
 
-export Request, Response, parse_request, calculate
+export CalculateOpenSectionBuckling, OpenSectionBucklingResult, parse_request, calculate
 
 end # module OpenSectionBucklingAPI
