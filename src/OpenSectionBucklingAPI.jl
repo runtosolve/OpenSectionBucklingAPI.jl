@@ -31,25 +31,6 @@ StructTypes.StructType(::Type{CalculateOpenSectionBuckling}) = StructTypes.Struc
 StructTypes.StructType(::Type{OpenSectionBucklingResult}) = StructTypes.Struct()
 
 
-function parse_request(json_string::String)::CalculateOpenSectionBuckling
-  d = JSON.parse(json_string)
-  coords = d["coordinates"]
-  loads = d["loads"]
-  return CalculateOpenSectionBuckling(
-    d["E"],
-    d["ν"],
-    d["t"],
-    (X=Float64.(coords["X"]), Y=Float64.(coords["Y"])),
-    d["centerline_radius"],
-    (P=loads["P"], Mxx=loads["Mxx"], Mzz=loads["Mzz"], M11=loads["M11"], M22=loads["M22"]),
-    d["load_type"],
-    d["flat_mesh_size_goal"],
-    d["corner_mesh_size_goal"],
-    d["mode_shape_element_discretization"]
-  )
-end
-
-
 function calculate(request::CalculateOpenSectionBuckling)::OpenSectionBucklingResult
 
   E = request.E
@@ -132,6 +113,6 @@ function calculate(request::CalculateOpenSectionBuckling)::OpenSectionBucklingRe
 
 end
 
-export CalculateOpenSectionBuckling, OpenSectionBucklingResult, parse_request, calculate
+export CalculateOpenSectionBuckling, OpenSectionBucklingResult, calculate
 
 end # module OpenSectionBucklingAPI
