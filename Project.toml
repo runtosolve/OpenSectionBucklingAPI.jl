@@ -1,6 +1,6 @@
 name = "OpenSectionBucklingAPI"
 uuid = "36b64f1b-83bf-4478-97ef-0e8c84cc1597"
-version = "0.2.0"
+version = "0.2.2"
 authors = ["Cris Moen <cris.moen@runtosolve.com>"]
 
 [deps]
