@@ -1,9 +1,2 @@
 [deps]
-CUFSM = "82b4978f-06ae-48e0-88e8-a26b4f7a0fa1"
-CUFSMModalGeometry = "82fbcf34-b322-4c20-ba17-babb40f2cc8c"
-CrossSectionGeometry = "e5713cf4-1a83-4860-95bf-b82253e75fb4"
-JSON = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
-OpenSectionBuckling = "a27af054-6946-4f6a-873a-7094cb2f6768"
-OpenSectionBucklingAPI = "36b64f1b-83bf-4478-97ef-0e8c84cc1597"
-SectionProperties = "03320fb2-42b0-43fd-9b66-b95dbaa39193"
-cFSM = "f62c156c-76c5-4505-9990-675440343290"
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
